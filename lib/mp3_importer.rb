@@ -1,6 +1,6 @@
 
 class MP3Importer
-    attr_accessor :path, :files
+    attr_accessor :path
 
     @@all = []
 
@@ -13,8 +13,10 @@ class MP3Importer
     end
     
     def files
-        # binding.pry - How do I get @path to work with Dir?
-        @files = Dir["./spec/fixtures/mp3s/*"].collect {|file| File.basename(file)}
+        # binding.pry
+        # Dir.chdir(@path)
+        # Dir.glob("#{@path}/*.mp3").collect {|file| file.gsub("#{@path}/","")}
+        Dir["#{@path}/*.mp3"].collect {|file| File.basename(file)}
     end
 
     def import 
@@ -23,3 +25,4 @@ class MP3Importer
     end
 
 end
+
